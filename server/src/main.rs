@@ -4,19 +4,20 @@
 extern crate rocket;
 extern crate serde;
 
-use rocket::{response::status, Data, State};
+use rocket::State;
 use rocket_contrib::json::Json;
 
 use serde::{Deserialize, Serialize};
 
 use std::collections::HashMap;
-use std::path::Path;
+
 use std::sync::{Arc, Mutex};
 
 mod unique_id;
 use unique_id::UniqueId;
 
 #[derive(Clone, Debug, Default, Serialize, Deserialize)]
+#[allow(non_snake_case)] // Cheat so json is in the form we care about
 pub struct Offer {
     pub candidate: String,
     pub sdpMLineIndex: i32,
